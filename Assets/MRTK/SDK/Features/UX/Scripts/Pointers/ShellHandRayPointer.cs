@@ -18,11 +18,11 @@ namespace Microsoft.MixedReality.Toolkit.Input
 
         [SerializeField]
         [Tooltip("Used when a focus target exists, or when select is pressed")]
-        private Material lineMaterialSelected = null;
+        public Material lineMaterialSelected = null; // changed to be public
 
         [SerializeField]
         [Tooltip("Used when no focus target exists and select is not pressed")]
-        private Material lineMaterialNoTarget = null;
+        public Material lineMaterialNoTarget = null;// changed to be public
 
         [Header("Inertia Settings")]
         [SerializeField]

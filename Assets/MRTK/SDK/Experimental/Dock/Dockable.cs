@@ -22,7 +22,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         [Experimental]
         [SerializeField, ReadOnly]
         [Tooltip("Current state of this dockable in regards to a dock.")]
-        private DockingState dockingState = DockingState.Undocked;
+        public DockingState dockingState = DockingState.Undocked;
 
         [SerializeField]
         [Tooltip("Time to animate any move/scale into or out of the dock.")]
@@ -43,9 +43,9 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.UI
         public bool CanUndock => dockingState == DockingState.Docked;
 
         // Constants
-        private static readonly float distanceTolerance = 0.01f; // in meters
-        private static readonly float angleTolerance = 3.0f; // in degrees
-        private static readonly float scaleTolerance = 0.01f; // in percentage
+        private static readonly float distanceTolerance = 0.05f; // originally 0.01 in meters
+        private static readonly float angleTolerance = 60.0f; // originally 3.0 in degrees
+        private static readonly float scaleTolerance = 0.1f; // originally 0.01 in percentage
 
         private DockPosition dockedPosition = null;
         private Vector3 dockedPositionScale = Vector3.one;

@@ -488,8 +488,21 @@ namespace Microsoft.MixedReality.Toolkit.UI
                 {
                     numControllers++;
                     sum += p.pointer.Controller.Velocity;
+                    // ##### JC EDIT START #####
+                    GameObject grabbedObject = p.pointer.Result.CurrentPointerTarget;
+                    Rigidbody objectRigidbody = grabbedObject.GetComponent<Rigidbody>();
+                    if (rigidBody)
+                    {
+                        sum += objectRigidbody.velocity;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Could not find rigidbody of object attached to pointer.");
+                    }
+                    // ##### JC EDIT END #####
                 }
             }
+            
             return sum / Math.Max(1, numControllers);
         }
 

@@ -468,6 +468,7 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Solvers
             isHit = MixedRealityRaycaster.RaycastSimplePhysicsStep(rayStep, maxRaycastDistance, magneticSurfaces, false, out result);
 
             OnSurface = isHit;
+            Debug.Log($"{rayStep}");
 
             // Enforce CloseDistance
             Vector3 hitDelta = result.point - rayStep.Origin;
@@ -478,11 +479,21 @@ namespace Microsoft.MixedReality.Toolkit.Utilities.Solvers
                 result.point = rayStep.Origin + rayStep.Direction * closestDistance;
             }
 
+            
+            
             // Apply results
             if (isHit)
             {
                 GoalPosition = result.point + surfaceNormalOffset * result.normal + surfaceRayOffset * rayStep.Direction;
                 GoalRotation = CalculateMagnetismOrientation(rayStep.Direction, result.normal);
+                if (DebugEnabled)
+                {
+                    Debug.DrawLine(result.point, GoalPosition, Color.cyan);
+                }
+            }
+            else
+            {
+                Debug.Log("SurfaceMagnetism found no raycast hit.");
             }
         }
 

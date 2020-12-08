@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 114903794112201558}
   - component: {fileID: 114269887534944512}
   - component: {fileID: 3980487836371375048}
+  - component: {fileID: 3076741770286018327}
   m_Layer: 0
   m_Name: DefaultControllerPointer
   m_TagString: Untagged
@@ -109,6 +110,7 @@ LineRenderer:
   m_MotionVectors: 2
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -120,6 +122,7 @@ LineRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -145,7 +148,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 0.999898}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.01
+    widthMultiplier: 0.04
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -273,7 +276,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  widthMultiplier: 0.01
+  widthMultiplier: 0.04
   colorOffset: 0
   widthOffset: 0
   stepMode: 0
@@ -325,13 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a969079783d81144bce7e89bd03ac89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handedness: 1
   destroyOnSourceLost: 0
   useSourcePoseData: 0
   poseAction:
     id: 4
     description: Pointer Pose
     axisConstraint: 7
+  handedness: 1
   cursorPrefab: {fileID: 1000012072213228, guid: 5b3e2856904e43c680f84f326861032a,
     type: 3}
   disableCursorOnStart: 0
@@ -342,9 +345,9 @@ MonoBehaviour:
     description: None
     axisConstraint: 0
   pointerAction:
-    id: 1
-    description: Select
-    axisConstraint: 2
+    id: 7
+    description: Grip Press
+    axisConstraint: 3
   requiresHoldAction: 0
   requiresActionBeforeEnabling: 0
   overrideGlobalPointerExtent: 0
@@ -526,3 +529,17 @@ MonoBehaviour:
   seekTargetStrength: 5
   p1Target: {x: 0, y: 0, z: 0.33}
   p2Target: {x: 0, y: 0, z: 0.66}
+--- !u!114 &3076741770286018327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247086986094436}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a56579f89dc5364c9258d25a9848738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintingMaterial: {fileID: 0}
+  pointer: {fileID: 114269887534944512}
