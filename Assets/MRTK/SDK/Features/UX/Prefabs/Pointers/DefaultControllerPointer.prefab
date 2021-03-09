@@ -351,8 +351,8 @@ MonoBehaviour:
   requiresHoldAction: 0
   requiresActionBeforeEnabling: 0
   overrideGlobalPointerExtent: 0
-  pointerExtent: 10
-  defaultPointerExtent: 5.5
+  pointerExtent: 50
+  defaultPointerExtent: 50
   sphereCastRadius: 0.1
   LineColorSelected:
     serializedVersion: 2
