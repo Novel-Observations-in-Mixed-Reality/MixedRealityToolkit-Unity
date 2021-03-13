@@ -283,6 +283,13 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// Base onclick event
         /// </summary>
         public UnityEvent OnClick = new UnityEvent();
+        
+        public class OnClickWithDataEvent : UnityEvent<InputEventData>{}
+        
+        /// <summary>
+        /// Onclick event that passes the InputEventData through.
+        /// </summary>
+        public UnityEvent<InputEventData> OnClickWithData = new OnClickWithDataEvent();
 
         [SerializeField]
         private List<InteractableEvent> Events = new List<InteractableEvent>();
@@ -1239,8 +1246,27 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
             IncreaseDimension();
 
-            SendOnClick(null);
+            SendOnClick((IMixedRealityPointer) null);
 
+            IsVisited = true;
+        }
+        
+        /// <summary>
+        /// A private way to trigger or route an onClick event and actually pass through relevant data
+        /// </summary>
+        private void TriggerOnClick(InputEventData eventData)
+        {
+            if (!IsEnabled)
+            {
+                return;
+            }
+
+            IncreaseDimension();
+            
+            // Null no mo!
+            //SendOnClick(null);
+            SendOnClick(eventData);
+            
             IsVisited = true;
         }
 
@@ -1252,6 +1278,37 @@ namespace Microsoft.MixedReality.Toolkit.UI
             OnClick.Invoke();
             ClickCount++;
 
+            for (int i = 0; i < InteractableEvents.Count; i++)
+            {
+                if (InteractableEvents[i].Receiver != null)
+                {
+                    InteractableEvents[i].Receiver.OnClick(StateManager, this, pointer);
+                }
+            }
+
+            for (int i = 0; i < handlers.Count; i++)
+            {
+                if (handlers[i] != null)
+                {
+                    handlers[i].OnClick(StateManager, this, pointer);
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Call onClick methods on receivers or IInteractableHandlers
+        /// </summary>
+        protected void SendOnClick(InputEventData eventData)
+        {
+            // pointer was always null anyway, so I'm just gonna give it the first pointer from the input source.
+            // Very unlikely to break anything.
+            Debug.Log($"Number of pointers in eventData: {eventData.InputSource.Pointers.Length}");
+            IMixedRealityPointer pointer = eventData.InputSource.Pointers[0];
+            
+            OnClick.Invoke();
+            OnClickWithData.Invoke(eventData);
+            ClickCount++;
+            
             for (int i = 0; i < InteractableEvents.Count; i++)
             {
                 if (InteractableEvents[i].Receiver != null)
@@ -1350,6 +1407,29 @@ namespace Microsoft.MixedReality.Toolkit.UI
                 StopClickTimer();
 
                 TriggerOnClick();
+                IsVisited = true;
+            }
+        }
+        
+        /// <summary>
+        /// Private method with InputEventData passed through that can be used to set state of interactable
+        /// corresponding to an input going up.
+        /// </summary>
+        private void SetInputUp(InputEventData eventData)
+        {
+            if (!CanInteract())
+            {
+                return;
+            }
+
+            HasPress = false;
+            HasGesture = false;
+
+            if (CanFireClick())
+            {
+                StopClickTimer();
+
+                TriggerOnClick(eventData);
                 IsVisited = true;
             }
         }
@@ -1578,6 +1658,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// <inheritdoc/>
         public void OnInputUp(InputEventData eventData)
         {
+            
             if (!CanInteract() && !HasPress)
             {
                 return;
@@ -1585,7 +1666,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
             if (ShouldListenToUpDownEvent(eventData))
             {
-                SetInputUp();
+                SetInputUp(eventData);
                 if (IsInputFromNearInteraction(eventData))
                 {
                     HasGrab = false;

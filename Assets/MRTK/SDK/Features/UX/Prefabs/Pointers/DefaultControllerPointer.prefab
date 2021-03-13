@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 114269887534944512}
   - component: {fileID: 3980487836371375048}
   - component: {fileID: 3076741770286018327}
+  - component: {fileID: 6699652082852397079}
   m_Layer: 0
   m_Name: DefaultControllerPointer
   m_TagString: Untagged
@@ -542,4 +543,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintingMaterial: {fileID: 0}
+  pointer: {fileID: 114269887534944512}
+--- !u!114 &6699652082852397079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247086986094436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc8dde03a1e5ee4d911bcddeea007dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultTool: {fileID: 11400000, guid: ce32b8cf54b666945bdd8cc631a18c9f, type: 2}
+  paintTool: {fileID: 11400000, guid: 65bafb2ddc6980346bf7968edca9a6fc, type: 2}
+  polledTools:
+  - {fileID: 11400000, guid: 313b64e5f06373d4f89d8089bc2bcb24, type: 2}
   pointer: {fileID: 114269887534944512}
