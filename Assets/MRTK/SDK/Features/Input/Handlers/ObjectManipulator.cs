@@ -620,7 +620,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
             }
         }
 
-        public void OnPointerDragged(MixedRealityPointerEventData eventData)
+        public virtual void OnPointerDragged(MixedRealityPointerEventData eventData)
         {
             // Call manipulation updated handlers
             if (IsOneHandedManipulationEnabled)
