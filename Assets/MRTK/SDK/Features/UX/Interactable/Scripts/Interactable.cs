@@ -1164,11 +1164,17 @@ namespace Microsoft.MixedReality.Toolkit.UI
         /// </summary>
         public static MixedRealityInputAction ResolveInputAction(int index)
         {
-            MixedRealityInputAction[] actions = CoreServices.InputSystem.InputSystemProfile.InputActionsProfile.InputActions;
-            if (actions?.Length > 0)
+            // Below code copied from up-to-date MRTK repo on 8/2/2021 to fix issue with Interactables being totally
+            // incompatible with MRTK's Scene system.
+            if (CoreServices.InputSystem?.InputSystemProfile != null
+                && CoreServices.InputSystem.InputSystemProfile.InputActionsProfile != null)
             {
-                index = Mathf.Clamp(index, 0, actions.Length - 1);
-                return actions[index];
+                MixedRealityInputAction[] actions = CoreServices.InputSystem.InputSystemProfile.InputActionsProfile.InputActions;
+                if (actions?.Length > 0)
+                {
+                    index = Mathf.Clamp(index, 0, actions.Length - 1);
+                    return actions[index];
+                }
             }
 
             return default;
