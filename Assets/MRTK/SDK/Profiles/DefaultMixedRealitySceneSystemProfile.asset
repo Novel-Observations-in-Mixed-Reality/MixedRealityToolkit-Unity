@@ -17,7 +17,7 @@ MonoBehaviour:
   managerScene:
     Name: DefaultManagerScene
     Path: Assets/MRTK/SDK/StandardAssets/Scenes/DefaultManagerScene.unity
-    Included: 1
+    Included: 0
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: ae7bb08d297fb69408695d8de0962524, type: 3}
@@ -26,7 +26,7 @@ MonoBehaviour:
   lightingScenes:
   - Name: DefaultLightingScene
     Path: Assets/MRTK/SDK/StandardAssets/Scenes/DefaultLightingScene.unity
-    Included: 1
+    Included: 0
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 7e54e36c44f826c438c95da79f8de638, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
     Asset: {fileID: 102900000, guid: 8c2497b788b7d1d48aba8c42cfb049e3, type: 3}
   - Name: NOMR_ModeSelect
     Path: Assets/Cassia/Scenes/NOMR_ModeSelect.unity
-    Included: 1
+    Included: 0
     BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: d3b15d23bf03ba444ab64ca2e278d1d0, type: 3}
