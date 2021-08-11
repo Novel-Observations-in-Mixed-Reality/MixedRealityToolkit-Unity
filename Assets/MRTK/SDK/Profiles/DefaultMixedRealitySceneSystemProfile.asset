@@ -34,7 +34,7 @@ MonoBehaviour:
   - Name: NOMRMainScene
     Path: Assets/Cassia/Scenes/NOMRMainScene.unity
     Included: 1
-    BuildIndex: 0
+    BuildIndex: -1
     Tag: Untagged
     Asset: {fileID: 102900000, guid: 8c2497b788b7d1d48aba8c42cfb049e3, type: 3}
   - Name: NOMR_ModeSelect
