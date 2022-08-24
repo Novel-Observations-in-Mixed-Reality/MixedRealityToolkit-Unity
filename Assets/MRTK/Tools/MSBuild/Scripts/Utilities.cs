@@ -123,6 +123,7 @@ namespace Microsoft.MixedReality.Toolkit.MSBuild
                 }
             }
 
+            guid = default;
             if (guid != null && Guid.TryParse(guidString, out guid))
             {
                 return true;
